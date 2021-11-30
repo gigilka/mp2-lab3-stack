@@ -19,17 +19,16 @@ public:
     void Push(T smt);
     T Pop();
     T Top() const;
-    friend ostream& operator<<(ostream& out, const Stack& st) {
-        for (int i = 0; i <= st.p; i++) {
-            out << st.arr[i] << ' ';
-        }
+    friend std::ostream& operator<<(std::ostream& out, const Stack& st){
+        for (int i = 0; i <= st.p; i++)
+            out << st.a[i] << ' ';
         return out;
     }
 };
 template <class T>
 Stack<T>::Stack(int s) {
-    if (_size <= 0) {
-        throw "Incorrect size"
+    if (s <= 0) {
+        throw "Incorrect size";
     }
     size = s;
     a = new T[size];
@@ -83,7 +82,7 @@ bool Stack<T>::IsEmpty() const {
 }
 template <class T>
 bool Stack<T>::IsFull() const {
-    return pos == size - 1;
+    return (p == size - 1);
 }
 template <class T>
 void Stack<T>::Clear() {
