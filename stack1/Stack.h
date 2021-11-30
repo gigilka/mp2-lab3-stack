@@ -3,7 +3,6 @@
 
 template <class T>
 class Stack {
-private:
     T* a;
     int size;
     int p;
