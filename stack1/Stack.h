@@ -2,31 +2,31 @@
 #include <iostream>
 
 template <class T>
-class Stack {
+class TStack {
     T* a;
     int size;
     int p;
 public:
-    Stack(int s = 64);
-    ~Stack();
-    Stack(const Stack& st);
-    Stack& operator=(const Stack& st);
-    bool operator==(const Stack& st) const;
-    bool operator!=(const Stack& st) const;
+    TStack(int s = 64);
+    ~TStack();
+    TStack(const TStack& st);
+    TStack& operator=(const TStack& st);
+    bool operator==(const TStack& st) const;
+    bool operator!=(const TStack& st) const;
     bool IsEmpty() const;
     bool IsFull() const;
     void Clear();
     void Push(T smt);
     T Pop();
     T Top() const;
-    friend std::ostream& operator<<(std::ostream& out, const Stack& st){
+    friend std::ostream& operator<<(std::ostream& out, const TStack& st){
         for (int i = 0; i <= st.p; i++)
             out << st.a[i] << ' ';
         return out;
     }
 };
 template <class T>
-Stack<T>::Stack(int s) {
+TStack<T>::TStack(int s) {
     if (s <= 0) {
         throw "Incorrect size";
     }
@@ -35,11 +35,11 @@ Stack<T>::Stack(int s) {
     p = -1;
 }
 template <class T>
-Stack<T>::~Stack() {
+TStack<T>::~TStack() {
     delete[] a;
 }
 template <class T>
-Stack<T>::Stack(const Stack& st) {
+TStack<T>::TStack(const TStack& st) {
     size = st.size;
     p = st.p;
     a = new T[size];
@@ -48,7 +48,7 @@ Stack<T>::Stack(const Stack& st) {
     }
 }
 template <class T>
-Stack<T>& Stack<T>::operator=(const Stack& st) {
+TStack<T>& TStack<T>::operator=(const TStack& st) {
     if (size != st.size) {
         delete[] a;
         size = st.size;
@@ -61,7 +61,7 @@ Stack<T>& Stack<T>::operator=(const Stack& st) {
     return *this;
 }
 template <class T>
-bool Stack<T>::operator==(const Stack& st) const {
+bool TStack<T>::operator==(const TStack& st) const {
     if (size != st.size) {
         return false;
     }
@@ -73,31 +73,31 @@ bool Stack<T>::operator==(const Stack& st) const {
     return true;
 }
 template <class T>
-bool Stack<T>::operator!=(const Stack& st) const {
+bool TStack<T>::operator!=(const TStack& st) const {
     return !operator==(st);
 }
 template <class T>
-bool Stack<T>::IsEmpty() const {
+bool TStack<T>::IsEmpty() const {
     return p == -1;
 }
 template <class T>
-bool Stack<T>::IsFull() const {
+bool TStack<T>::IsFull() const {
     return (p == size - 1);
 }
 template <class T>
-void Stack<T>::Clear() {
+void TStack<T>::Clear() {
     p = -1;
 }
 template <class T>
-void Stack<T>::Push(T smt) {
+void TStack<T>::Push(T smt) {
     if (IsFull()) {
-        throw "Stack overflow";
+        throw "TStack overflow";
     }
     p++;
     a[p] = smt;
 }
 template <class T>
-T Stack<T>::Pop() {
+T TStack<T>::Pop() {
     if (IsEmpty()) {
         throw "Empty stack";
     }
@@ -106,7 +106,7 @@ T Stack<T>::Pop() {
     return smt;
 }
 template <class T>
-T Stack<T>::Top() const {
+T TStack<T>::Top() const {
     if (IsEmpty()) {
         throw "Empty stack";
     }

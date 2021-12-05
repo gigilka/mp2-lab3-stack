@@ -1,11 +1,13 @@
 #include "MyForm.h"
 
-#include <Windows.h> 
-using namespace form;
-
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+using namespace System;
+using namespace System::Windows::Forms;
+[STAThread]
+void Main(array<String^>^ args)
+{
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	Application::Run(gcnew MyForm);
-	return 0;
+
+	CppWinForm1::MyForm form;
+	Application::Run(% form);
 }

@@ -2,32 +2,32 @@
 
 #include "gtest.h"
 
-TEST(Stack, can_create_stack_with_positive_size)
+TEST(TStack, can_create_stack_with_positive_size)
 {
-  ASSERT_NO_THROW(Stack<int> st(5));
+  ASSERT_NO_THROW(TStack<int> st(5));
 }
-TEST(Stack, cant_create_stack_with_non_positive_size)
+TEST(TStack, cant_create_stack_with_non_positive_size)
 {
-	ASSERT_ANY_THROW(Stack<int> st(-9));
-	ASSERT_ANY_THROW(Stack<int> st(0));
+	ASSERT_ANY_THROW(TStack<int> st(-9));
+	ASSERT_ANY_THROW(TStack<int> st(0));
 }
-TEST(Stack, can_create_copied_stack_and_comparation)
+TEST(TStack, can_create_copied_stack_and_comparation)
 {
-	Stack<int> st(5);
-	ASSERT_NO_THROW(Stack<int> stack = st);
+	TStack<int> st(5);
+	ASSERT_NO_THROW(TStack<int> stack = st);
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
 	}
-	Stack<int> stack = st;
+	TStack<int> stack = st;
 	EXPECT_EQ(stack, st);
 }
-TEST(Stack, copied_stack_has_its_own_memory) 
+TEST(TStack, copied_stack_has_its_own_memory) 
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
 	}
-	Stack<int> stack= st;
+	TStack<int> stack= st;
 	stack.Clear();
 	for (int i = 0; i < 5; i++) {
 		stack.Push(i + 1);
@@ -36,20 +36,20 @@ TEST(Stack, copied_stack_has_its_own_memory)
 		EXPECT_NE(st.Pop(), stack.Pop());
 	}
 }
-TEST(Stack, can_assign_stacks_of_equal_size)
+TEST(TStack, can_assign_stacks_of_equal_size)
 {
-	Stack<int> st(5);
-	Stack<int> stack(5);
+	TStack<int> st(5);
+	TStack<int> stack(5);
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
 		stack.Push(i - 1);
 	}
 	EXPECT_NE(st, stack);
 }
-TEST(Stack, can_assign_stacks_of_different_size)
+TEST(TStack, can_assign_stacks_of_different_size)
 {
-	Stack<int> st(5);
-	Stack<int> stack(7);
+	TStack<int> st(5);
+	TStack<int> stack(7);
 	for (int i = 0; i < 7; i++) {
 		if (i < 5) {
 		st.Push(i);
@@ -58,9 +58,9 @@ TEST(Stack, can_assign_stacks_of_different_size)
 	}
 	EXPECT_NE(st, stack);
 }
-TEST(Stack, can_assign_stack_to_itself)
+TEST(TStack, can_assign_stack_to_itself)
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
@@ -68,14 +68,14 @@ TEST(Stack, can_assign_stack_to_itself)
 	}
 	EXPECT_EQ(st, st);
 }
-TEST(Stack, equal_stacks_comparison_returns_true)
+TEST(TStack, equal_stacks_comparison_returns_true)
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
 	}
 
-	Stack<int> stack(5);
+	TStack<int> stack(5);
 	for (int i = 0; i < 5; i++) {
 		stack.Push(i);
 	}
@@ -84,14 +84,14 @@ TEST(Stack, equal_stacks_comparison_returns_true)
 	EXPECT_TRUE(st == stack);
 
 }
-TEST(Stack, unequal_stacks_comparison_returns_false) 
+TEST(TStack, unequal_stacks_comparison_returns_false) 
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	for (int i = 0; i < 5; i++) {
 		st.Push(i);
 	}
 
-	Stack<int> stack(5);
+	TStack<int> stack(5);
 	for (int i = 0; i < 5; i++) {
 		stack.Push(1);
 	}
@@ -99,12 +99,12 @@ TEST(Stack, unequal_stacks_comparison_returns_false)
 	EXPECT_FALSE(st==stack);
 	EXPECT_TRUE(st != stack);
 }
-TEST(Stack, empty_full_correctness)
+TEST(TStack, empty_full_correctness)
 {
-	Stack<int> s(5);
-	Stack<int> s1(5);
-	Stack<int> s2(5);
-	Stack<int> s3(5);
+	TStack<int> s(5);
+	TStack<int> s1(5);
+	TStack<int> s2(5);
+	TStack<int> s3(5);
 	for (int i = 0; i < 5; i++) {
 		s1.Push(1);
 	}
@@ -114,17 +114,17 @@ TEST(Stack, empty_full_correctness)
 	EXPECT_TRUE(s2.IsFull());
 	EXPECT_FALSE(s3.IsFull());
 }
-TEST(Stack, can_clear)
+TEST(TStack, can_clear)
 {
-	Stack<int> stack(5);
+	TStack<int> stack(5);
 	for (int i = 0; i < 5; i++) {
 		stack.Push(1);
 	}
 	ASSERT_NO_THROW(stack.Clear());
 }
-TEST(Stack, can_pop_push_top)
+TEST(TStack, can_pop_push_top)
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	int smt = 10,pop;
 	ASSERT_NO_THROW(st.Push(smt));
 	ASSERT_NO_THROW(pop = st.Pop());
@@ -135,9 +135,9 @@ TEST(Stack, can_pop_push_top)
 	EXPECT_EQ(pop, smt);
 	
 }
-TEST(Stack, cant_pop_top_empty_and_push_full)
+TEST(TStack, cant_pop_top_empty_and_push_full)
 {
-	Stack<int> st(5);
+	TStack<int> st(5);
 	ASSERT_ANY_THROW(st.Pop());
 	ASSERT_ANY_THROW(st.Top());
 	for (int i = 0; i < 5; i++) {

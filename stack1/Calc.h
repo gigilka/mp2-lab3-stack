@@ -9,8 +9,8 @@ using namespace std;
 class Calc {
 	string exp;
 	string post;
-	Stack<char> stc;
-	Stack<double> stdo;
+	TStack<char> stc;
+	TStack<double> stdo;
 	int priority(char op);
 public:
 	Calc();
